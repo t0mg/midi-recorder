@@ -1,5 +1,0 @@
-{
-  "name": "Web MIDI Recorder",
-  "description": "A web app to record, play, and manage MIDI data from a hardware keyboard.",
-  "requestFramePermissions": []
-}
