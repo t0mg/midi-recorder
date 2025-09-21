@@ -1,4 +1,3 @@
-
 import { Midi } from "@tonejs/midi";
 
 const LOCAL_STORAGE_KEY = "midiRecordings";
@@ -60,6 +59,7 @@ const exportButton = document.getElementById("export-button") as HTMLButtonEleme
 const importInput = document.getElementById("import-midi-input") as HTMLInputElement;
 const savedRecordingsSelector = document.getElementById("saved-recordings") as HTMLSelectElement;
 const loadButton = document.getElementById("load-button") as HTMLButtonElement;
+const renameButton = document.getElementById("rename-button") as HTMLButtonElement;
 const deleteButton = document.getElementById("delete-button") as HTMLButtonElement;
 const playbackCard = document.getElementById("playback-card")!;
 const timeDisplay = document.getElementById("time-display")!;
@@ -160,6 +160,7 @@ function updateButtonStates() {
     exportButton.disabled = isRecording || isPlaying || !hasNoteOn;
 
     loadButton.disabled = isRecording || isPlaying || !selectedRecordingName;
+    renameButton.disabled = isRecording || isPlaying || !selectedRecordingName;
     deleteButton.disabled = isRecording || isPlaying || !selectedRecordingName;
 
     if (isRecording) {
@@ -405,6 +406,34 @@ function loadRecording() {
     }
 }
 
+function renameRecording() {
+    const oldName = selectedRecordingName;
+    if (!oldName || !savedRecordings[oldName]) {
+        updateStatus("No recording selected to rename.");
+        return;
+    }
+
+    const newName = prompt(`Enter a new name for "${oldName}":`, oldName);
+
+    if (newName && newName !== oldName) {
+        if (savedRecordings[newName]) {
+            updateStatus(`Error: A recording named "${newName}" already exists.`);
+            return;
+        }
+
+        savedRecordings[newName] = savedRecordings[oldName];
+        delete savedRecordings[oldName];
+
+        selectedRecordingName = newName;
+        if (currentLoadedName === oldName) {
+            currentLoadedName = newName;
+        }
+
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(savedRecordings));
+        updateStatus(`Renamed "${oldName}" to "${newName}".`);
+        updateSavedRecordingsList();
+    }
+}
 
 function deleteRecording() {
     const name = savedRecordingsSelector.value;
@@ -612,7 +641,6 @@ function attachMIDIMessageListener() {
 }
 
 function onMIDIMessage(message: MIDIMessageEvent) {
-    flashIndicator();
     const eventData = Array.from(message.data);
     const [status, data1, data2] = eventData;
     
@@ -630,6 +658,10 @@ function onMIDIMessage(message: MIDIMessageEvent) {
 
     const isNoteOn = (status & 0xF0) === 0x90 && data2 > 0;
     const isNoteOff = (status & 0xF0) === 0x80 || ((status & 0xF0) === 0x90 && data2 === 0);
+
+    if(isNoteOn) {
+        flashIndicator();
+    }
 
     if (isAutoRecordMode && isNoteOn && !isRecording) {
         startRecording();
@@ -730,6 +762,7 @@ function setupEventListeners() {
     });
 
     loadButton.addEventListener('click', loadRecording);
+    renameButton.addEventListener('click', renameRecording);
     deleteButton.addEventListener('click', deleteRecording);
     
     playbackSlider.addEventListener('input', () => {

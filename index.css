@@ -1,13 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
 :root {
-  --background-color: #282c34;
-  --text-color: #abb2bf;
-  --primary-color: #61afef;
-  --primary-hover-color: #528baf;
-  --secondary-color: #3a3f4b;
-  --border-color: #4b5263;
+  --background-color: #202020;
+  --text-color: #E0E0E0;
+  --primary-color: #339999;
+  --primary-hover-color: #2d8888;
+  --secondary-color: #2a2a2a;
+  --border-color: #404040;
   --success-color: #98c379;
   --error-color: #e06c75;
-  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  --font-family: 'Roboto Condensed', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
 }
 
@@ -57,7 +59,6 @@ h1 {
 
 .midi-indicator.active {
   background-color: var(--error-color);
-  box-shadow: 0 0 8px var(--error-color);
 }
 
 
@@ -87,24 +88,29 @@ button,
   font-family: inherit;
   font-size: 1rem;
   padding: 0.75rem;
-  border-radius: 6px;
+  border-radius: 4px;
   border: 1px solid var(--border-color);
   background-color: var(--secondary-color);
   color: var(--text-color);
   cursor: pointer;
-  transition: background-color 0.2s, border-color 0.2s;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
   text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 select:focus,
 button:focus {
-  outline: 2px solid var(--primary-color);
-  outline-offset: 2px;
+  outline: none;
+  border-color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 button:hover,
 .button-like:hover {
-  background-color: var(--border-color);
+  background-color: var(--secondary-color);
+  border-color: var(--primary-hover-color);
+  color: var(--primary-hover-color);
 }
 
 button:disabled {
