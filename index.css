@@ -235,22 +235,32 @@ button:disabled {
 .playback-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   background: var(--primary-color);
   border-radius: 50%;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, box-shadow 0.2s;
 }
 
 .playback-slider::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   background: var(--primary-color);
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.playback-slider:active::-webkit-slider-thumb,
+.playback-slider:focus::-webkit-slider-thumb {
+    box-shadow: 0 0 8px var(--primary-color);
+}
+
+.playback-slider:active::-moz-range-thumb,
+.playback-slider:focus::-moz-range-thumb {
+    box-shadow: 0 0 8px var(--primary-color);
 }
 
 .playback-slider:hover::-webkit-slider-thumb {
