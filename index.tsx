@@ -255,6 +255,7 @@ function startPlayback() {
                 finalMessage = [status, data1, data2];
             }
             
+            console.log("Sending MIDI message:", finalMessage);
             output.send(finalMessage);
 
              if ((status & 0xF0) === 0x90 && data2 > 0) {
