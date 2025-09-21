@@ -1,8 +1,10 @@
 # Web MIDI Recorder
 
-(https://github.com/t0mg/midi-recorder/actions/workflows/deploy.yml/badge.svg)](https://github.com/t0mg/midi-recorder/actions/workflows/deploy.yml)
+[![Deploy to GitHub Pages](https://github.com/t0mg/midi-recorder/actions/workflows/deploy.yml/badge.svg)](https://github.com/t0mg/midi-recorder/actions/workflows/deploy.yml)
 
 A simple web-based application for recording, playing, saving, and exporting MIDI data from MIDI devices.
+
+A weekend experiment made entirely on my phone using [AI studio](aistudio.google.com) and [Jules](jules.google.com).
 
 ## Features
 
