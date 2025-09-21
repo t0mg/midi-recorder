@@ -247,6 +247,9 @@ function startPlayback() {
             }
             
             const [status, data1, data2] = event.data;
+            if (status >= 0xF0) {
+                continue;
+            }
             let finalMessage;
             if (selectedOutputChannel !== 'default') {
                 const newStatus = (status & 0xF0) | (parseInt(selectedOutputChannel, 10) - 1);
@@ -255,7 +258,6 @@ function startPlayback() {
                 finalMessage = [status, data1, data2];
             }
             
-            console.log("Sending MIDI message:", finalMessage);
             output.send(finalMessage);
 
              if ((status & 0xF0) === 0x90 && data2 > 0) {
@@ -678,18 +680,21 @@ function onMIDIMessage(message: MIDIMessageEvent) {
         }, 3000); // 3 seconds of silence
     }
     
-    const timestamp = performance.now();
-    preRecordBuffer.push({ data: eventData, timestamp: timestamp });
-    while (preRecordBuffer.length > 0 && timestamp - preRecordBuffer[0].timestamp > PRE_RECORD_BUFFER_DURATION) {
-        preRecordBuffer.shift();
-    }
-    
-    if (isRecording) {
-        if (currentRecording.length === 0) {
-            currentRecording.push(...preRecordBuffer);
-            recordingStartTime = preRecordBuffer.length > 0 ? preRecordBuffer[0].timestamp : performance.now();
+    // Only record channel messages (0x80-0xEF), not system messages (0xF0-0xFF)
+    if (status < 0xF0) {
+        const timestamp = performance.now();
+        preRecordBuffer.push({ data: eventData, timestamp: timestamp });
+        while (preRecordBuffer.length > 0 && timestamp - preRecordBuffer[0].timestamp > PRE_RECORD_BUFFER_DURATION) {
+            preRecordBuffer.shift();
         }
-        currentRecording.push({ data: eventData, timestamp });
+
+        if (isRecording) {
+            if (currentRecording.length === 0) {
+                currentRecording.push(...preRecordBuffer);
+                recordingStartTime = preRecordBuffer.length > 0 ? preRecordBuffer[0].timestamp : performance.now();
+            }
+            currentRecording.push({ data: eventData, timestamp });
+        }
     }
 }
 
