@@ -51,6 +51,8 @@ h1 {
   border-radius: 50%;
   background-color: #5c1a1a;
   transition: background-color 0.1s ease, box-shadow 0.1s ease;
+  position: relative;
+  top: 5px;
 }
 
 .midi-indicator.active {
