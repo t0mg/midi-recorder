@@ -14,8 +14,8 @@
         }
       }
     </script>
-    <script type="module" crossorigin src="/midi-recorder/assets/index-DBap1ktl.js"></script>
-    <link rel="stylesheet" crossorigin href="/midi-recorder/assets/index-oD6h-3YG.css">
+    <script type="module" crossorigin src="/midi-recorder/assets/index-w_qNNIzb.js"></script>
+    <link rel="stylesheet" crossorigin href="/midi-recorder/assets/index-WkZGRtWU.css">
   </head>
   <body>
     <div id="root">
@@ -53,15 +53,11 @@
           <button id="record-button" class="button-record">Record</button>
           <button id="play-button" class="button-play">Play</button>
           <button id="save-button">Save</button>
+        </div>
+        <div class="controls-grid" style="margin-top: 0.75rem;">
           <button id="export-button">Export MIDI</button>
           <label for="import-midi-input" class="button-like">Import MIDI</label>
           <input type="file" id="import-midi-input" accept=".mid,.midi" />
-        </div>
-        <div class="auto-record-control">
-          <input type="checkbox" id="auto-record-checkbox" checked />
-          <label for="auto-record-checkbox"
-            >Auto-record on input (3s silence to save)</label
-          >
         </div>
       </div>
 
@@ -88,6 +84,12 @@
           <button id="load-button">Load Selected</button>
           <button id="rename-button">Rename</button>
           <button id="delete-button">Delete Selected</button>
+        </div>
+        <div class="auto-record-control">
+          <input type="checkbox" id="auto-record-checkbox" checked />
+          <label for="auto-record-checkbox"
+            >Auto-record on input</label
+          >
         </div>
       </div>
 
