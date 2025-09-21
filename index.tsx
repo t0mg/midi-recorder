@@ -48,6 +48,7 @@ const statusEl = document.getElementById("status-bar")!;
 const midiIndicator = document.getElementById("midi-indicator")!;
 const toggleDevicesButton = document.getElementById("toggle-devices-button") as HTMLButtonElement;
 const deviceSettingsTitle = document.getElementById("device-settings-title") as HTMLSpanElement;
+const deviceStatusLed = document.getElementById("device-status-led") as HTMLSpanElement;
 const deviceSelectorsContainer = document.getElementById("device-selectors-container")!;
 const inputSelector = document.getElementById("midi-input") as HTMLSelectElement;
 const outputSelector = document.getElementById("midi-output") as HTMLSelectElement;
@@ -81,7 +82,13 @@ function flashIndicator() {
 
 function updateDeviceStatusIndicator() {
     const hasValidInput = selectedInputId && inputs.some(i => i.id === selectedInputId);
-    deviceSettingsTitle.textContent = `${hasValidInput ? '✔️' : '❌'} MIDI Device Settings`;
+    if (hasValidInput) {
+        deviceStatusLed.classList.add('connected');
+        deviceStatusLed.classList.remove('disconnected');
+    } else {
+        deviceStatusLed.classList.add('disconnected');
+        deviceStatusLed.classList.remove('connected');
+    }
 }
 
 function updateDeviceLists() {

@@ -54,11 +54,12 @@ h1 {
   background-color: #5c1a1a;
   transition: background-color 0.1s ease, box-shadow 0.1s ease;
   position: relative;
-  top: 5px;
+  top: 2px;
 }
 
 .midi-indicator.active {
   background-color: var(--error-color);
+  box-shadow: 0 0 8px var(--error-color);
 }
 
 
@@ -275,6 +276,40 @@ button:disabled {
 .collapsible-header:hover {
   background-color: transparent;
   color: var(--primary-color);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.led {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.led.connected {
+  background-color: var(--success-color);
+  box-shadow: 0 0 6px var(--success-color);
+}
+
+.led.disconnected {
+  background-color: var(--error-color);
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    background-color: var(--error-color);
+    box-shadow: 0 0 6px var(--error-color);
+  }
+  50% {
+    background-color: #5c1a1a;
+    box-shadow: none;
+  }
 }
 
 .collapsible-header .chevron {
