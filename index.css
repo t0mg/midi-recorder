@@ -45,6 +45,8 @@ h1 {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
+  position: relative;
+  top: 2px;
 }
 
 .midi-indicator {
@@ -54,7 +56,6 @@ h1 {
   background-color: #5c1a1a;
   transition: background-color 0.1s ease, box-shadow 0.1s ease;
   position: relative;
-  top: 2px;
 }
 
 .midi-indicator.active {
