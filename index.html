@@ -12,19 +12,22 @@
         }
       }
     </script>
-    <script type="module" crossorigin src="/midi-recorder/assets/index-C8Ufe3QB.js"></script>
-    <link rel="stylesheet" crossorigin href="/midi-recorder/assets/index-CkeHZN8X.css">
+    <script type="module" crossorigin src="/midi-recorder/assets/index-QVHCBxsI.js"></script>
+    <link rel="stylesheet" crossorigin href="/midi-recorder/assets/index-B8bP2lvL.css">
   </head>
   <body>
     <div id="root">
       <h1>
-        Web MIDI Recorder
+        MIDI Recorder
         <div id="midi-indicator" class="midi-indicator"></div>
       </h1>
 
       <div class="card">
         <button id="toggle-devices-button" class="collapsible-header" aria-expanded="false" aria-controls="device-selectors-container">
-          <span id="device-settings-title">MIDI Device Settings</span>
+          <div class="header-content">
+            <span id="device-status-led" class="led"></span>
+            <span id="device-settings-title">MIDI Device Settings</span>
+          </div>
           <span class="chevron"></span>
         </button>
         <div id="device-selectors-container" class="collapsible-content">
