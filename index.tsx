@@ -1,6 +1,8 @@
 import { Midi } from "@tonejs/midi";
 
 const LOCAL_STORAGE_KEY = "midiRecordings";
+const AUTO_RECORD_KEY = "autoRecordSetting";
+const OUTPUT_CHANNEL_KEY = "outputChannelSetting";
 
 type MidiEvent = {
   data: number[];
@@ -748,6 +750,7 @@ function setupEventListeners() {
 
     outputChannelSelector.addEventListener('change', () => {
         selectedOutputChannel = outputChannelSelector.value;
+        localStorage.setItem(OUTPUT_CHANNEL_KEY, selectedOutputChannel);
     });
 
     recordButton.addEventListener('click', toggleRecording);
@@ -784,6 +787,7 @@ function setupEventListeners() {
     
     autoRecordCheckbox.addEventListener('change', () => {
         isAutoRecordMode = autoRecordCheckbox.checked;
+        localStorage.setItem(AUTO_RECORD_KEY, JSON.stringify(isAutoRecordMode));
         if (!isAutoRecordMode && silenceTimeoutId) {
             clearTimeout(silenceTimeoutId);
             silenceTimeoutId = null;
@@ -809,6 +813,21 @@ function initializeApp() {
         }
     }
     updateSavedRecordingsList();
+
+    deviceSelectorsContainer.classList.remove('expanded');
+    toggleDevicesButton.setAttribute('aria-expanded', 'false');
+
+    const savedAutoRecord = localStorage.getItem(AUTO_RECORD_KEY);
+    if (savedAutoRecord !== null) {
+        isAutoRecordMode = JSON.parse(savedAutoRecord);
+        autoRecordCheckbox.checked = isAutoRecordMode;
+    }
+
+    const savedOutputChannel = localStorage.getItem(OUTPUT_CHANNEL_KEY);
+    if (savedOutputChannel !== null) {
+        selectedOutputChannel = savedOutputChannel;
+        outputChannelSelector.value = selectedOutputChannel;
+    }
 
     if (navigator.requestMIDIAccess) {
         navigator.requestMIDIAccess({ sysex: false }).then(onMIDISuccess, () => onMIDIFailure('Permission denied or system error.'));
