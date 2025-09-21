@@ -3,6 +3,7 @@ import { Midi } from "@tonejs/midi";
 const LOCAL_STORAGE_KEY = "midiRecordings";
 const AUTO_RECORD_KEY = "autoRecordSetting";
 const OUTPUT_CHANNEL_KEY = "outputChannelSetting";
+const SETTINGS_EXPANDED_KEY = "settingsExpanded";
 
 type MidiEvent = {
   data: number[];
@@ -733,8 +734,10 @@ async function releaseWakeLock() {
 function setupEventListeners() {
     toggleDevicesButton.addEventListener('click', () => {
         const isExpanded = toggleDevicesButton.getAttribute('aria-expanded') === 'true';
-        toggleDevicesButton.setAttribute('aria-expanded', String(!isExpanded));
-        deviceSelectorsContainer.classList.toggle('expanded');
+        const newIsExpanded = !isExpanded;
+        toggleDevicesButton.setAttribute('aria-expanded', String(newIsExpanded));
+        deviceSelectorsContainer.classList.toggle('expanded', newIsExpanded);
+        localStorage.setItem(SETTINGS_EXPANDED_KEY, JSON.stringify(newIsExpanded));
     });
 
     inputSelector.addEventListener('change', () => {
@@ -814,8 +817,16 @@ function initializeApp() {
     }
     updateSavedRecordingsList();
 
-    deviceSelectorsContainer.classList.remove('expanded');
-    toggleDevicesButton.setAttribute('aria-expanded', 'false');
+    const savedExpanded = localStorage.getItem(SETTINGS_EXPANDED_KEY);
+    if (savedExpanded !== null) {
+        const isExpanded = JSON.parse(savedExpanded);
+        toggleDevicesButton.setAttribute('aria-expanded', String(isExpanded));
+        deviceSelectorsContainer.classList.toggle('expanded', isExpanded);
+    } else {
+        // Default to collapsed
+        deviceSelectorsContainer.classList.remove('expanded');
+        toggleDevicesButton.setAttribute('aria-expanded', 'false');
+    }
 
     const savedAutoRecord = localStorage.getItem(AUTO_RECORD_KEY);
     if (savedAutoRecord !== null) {
