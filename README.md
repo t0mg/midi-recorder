@@ -1,6 +1,6 @@
 ![Midi recorder](public/favicon.svg)
 
-# Web MIDI Recorder
+# MIDI Recorder
 
 [![Deploy to GitHub Pages](https://github.com/t0mg/midi-recorder/actions/workflows/deploy.yml/badge.svg)](https://github.com/t0mg/midi-recorder/actions/workflows/deploy.yml)
 
