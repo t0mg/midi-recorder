@@ -162,7 +162,7 @@ function updateButtonStates() {
     });
 
     const hasValidInput = selectedInputId && inputs.some(i => i.id === selectedInputId);
-    recordButton.disabled = isPlaying || !hasValidInput;
+    recordButton.disabled = isPlaying || !hasValidInput || isAutoRecordMode;
     playButton.disabled = isRecording || !hasNoteOn;
 
     saveButton.disabled = isRecording || isPlaying || !hasNoteOn;
@@ -395,6 +395,19 @@ function saveRecording() {
         updateStatus(`Recording saved as "${name}".`);
         updateSavedRecordingsList();
     }
+}
+
+function autoSaveRecording() {
+    if (currentRecording.length === 0) {
+        return;
+    }
+    const name = `Auto-recording ${new Date().toLocaleString()}`;
+    savedRecordings[name] = [...currentRecording];
+    currentLoadedName = name;
+    selectedRecordingName = name;
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(savedRecordings));
+    updateStatus(`Recording auto-saved as "${name}".`);
+    updateSavedRecordingsList();
 }
 
 function loadRecording() {
@@ -685,6 +698,7 @@ function onMIDIMessage(message: MIDIMessageEvent) {
             if (isRecording) {
                 updateStatus("Silence detected, stopping auto-record.");
                 stopRecording();
+                autoSaveRecording();
             }
         }, 3000); // 3 seconds of silence
     }
@@ -792,6 +806,7 @@ function setupEventListeners() {
             clearTimeout(silenceTimeoutId);
             silenceTimeoutId = null;
         }
+        updateButtonStates();
     });
 }
 
