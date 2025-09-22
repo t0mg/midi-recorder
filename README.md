@@ -1,14 +1,10 @@
 ![Midi recorder](public/favicon.svg)
 
-# Web MIDI Recorder
+# MIDI Recorder
 
 [![Deploy to GitHub Pages](https://github.com/t0mg/midi-recorder/actions/workflows/deploy.yml/badge.svg)](https://github.com/t0mg/midi-recorder/actions/workflows/deploy.yml)
 
-A simple web-based application for recording, playing, saving, and exporting MIDI data from MIDI devices over USB.
-
-It is useable directly from https://t0mg.github.io/midi-recorder/
-
-## Credits
+A simple web-based application for recording, playing, saving, and exporting MIDI data from MIDI devices over USB. It is useable directly from https://t0mg.github.io/midi-recorder/
 
 This small app was a weekend experiment made entirely on a phone using [AI studio](aistudio.google.com), [Jules](jules.google.com), and a pinch of tedious manual editing.
 
@@ -45,6 +41,17 @@ To preview the production build:
 ```bash
 npm run preview
 ```
+
+## Credits & Technologies Used
+
+The project uses the following APIs and libraries:
+
+*   **External Libraries**:
+    *   [@tonejs/midi](https://github.com/Tonejs/Midi): For parsing and creating MIDI files.
+*   **Browser APIs**:
+    *   [Web MIDI API](https://developer.mozilla.org/en-US/docs/Web/API/Web_MIDI_API): For connecting to and receiving messages from MIDI devices.
+    *   [Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API): For saving and loading recordings in the browser.
+    *   [Screen Wake Lock API](https://developer.mozilla.org/en-US/docs/Web/API/Screen_Wake_Lock_API): For preventing the screen from dimming or locking during use.
 
 ## License
 
