@@ -165,7 +165,7 @@ function updateButtonStates() {
     recordButton.disabled = isPlaying || !hasValidInput || isAutoRecordMode;
     playButton.disabled = isRecording || !hasNoteOn;
 
-    saveButton.disabled = isRecording || isPlaying || !hasNoteOn;
+    saveButton.disabled = isRecording || isPlaying || !hasNoteOn || isAutoRecordMode;
     exportButton.disabled = isRecording || isPlaying || !hasNoteOn;
 
     loadButton.disabled = isRecording || isPlaying || !selectedRecordingName;
