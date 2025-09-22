@@ -347,7 +347,6 @@ button:disabled {
 
 .collapsible-header[aria-expanded="true"] .chevron {
   transform: rotate(-135deg);
-  margin-top: -4px;
 }
 
 .collapsible-content {
