@@ -51,6 +51,7 @@ The project uses the following APIs and libraries:
 *   **Browser APIs**:
     *   [Web MIDI API](https://developer.mozilla.org/en-US/docs/Web/API/Web_MIDI_API): For connecting to and receiving messages from MIDI devices.
     *   [Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API): For saving and loading recordings in the browser.
+    *   [Screen Wake Lock API](https://developer.mozilla.org/en-US/docs/Web/API/Screen_Wake_Lock_API): For preventing the screen from dimming or locking during use.
 
 ## License
 
