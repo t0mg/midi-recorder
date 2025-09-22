@@ -3,7 +3,7 @@
   <path fill="#202020" d="M0 0h64v64H0z"/>
 
   <!-- The scaled content group -->
-  <g transform="translate(4.8, 4.8) scale(0.85)">
+  <g transform="translate(11.52, 11.52) scale(0.64)">
     <!-- Content from original SVG, without the background -->
     <rect width="56" height="22" x="4" y="38" fill="#399" rx="1"/>
     <text x="5" y="21" fill="#E0E0E0" font-family="Arial, sans-serif" font-size="10" text-anchor="left">MIDI</text>
