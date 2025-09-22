@@ -106,6 +106,7 @@ button,
   justify-content: center;
   gap: 0.5rem;
   text-transform: uppercase;
+  user-select: none;
 }
 
 select:focus,
