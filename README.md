@@ -12,10 +12,6 @@ It is useable directly from https://t0mg.github.io/midi-recorder/
 
 This small app was a weekend experiment made entirely on a phone using [AI studio](aistudio.google.com), [Jules](jules.google.com), and a pinch of tedious manual editing.
 
-The icon is a simplified version of the [Roland TR-808](https://en.wikipedia.org/wiki/Roland_TR-808) start/stop button.
-
-The application icon is provided in multiple formats to ensure it looks good on all platforms. This includes a maskable icon for Android devices, which prevents the icon from being cropped or displayed in a white circle.
-
 ## Features
 
 - Connect to MIDI input and output devices.
