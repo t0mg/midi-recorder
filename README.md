@@ -44,7 +44,7 @@ npm run preview
 
 ## Credits & Technologies Used
 
-This project leverages several powerful web technologies and libraries:
+The project uses the following APIs and libraries:
 
 *   **External Libraries**:
     *   [@tonejs/midi](https://github.com/Tonejs/Midi): For parsing and creating MIDI files.
