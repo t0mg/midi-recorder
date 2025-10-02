@@ -3,6 +3,7 @@ import { Midi } from "@tonejs/midi";
 const LOCAL_STORAGE_KEY = "midiRecordings";
 const AUTO_RECORD_KEY = "autoRecordSetting";
 const OUTPUT_CHANNEL_KEY = "outputChannelSetting";
+const AUTO_RECORD_TIMEOUT_MS = 6000; // Stop auto recording after 6 seconds.
 
 type MidiEvent = {
   data: number[];
@@ -700,7 +701,7 @@ function onMIDIMessage(message: MIDIMessageEvent) {
                 stopRecording();
                 autoSaveRecording();
             }
-        }, 3000); // 3 seconds of silence
+        }, AUTO_RECORD_TIMEOUT_MS);
     }
     
     // Only record channel messages (0x80-0xEF), not system messages (0xF0-0xFF)
